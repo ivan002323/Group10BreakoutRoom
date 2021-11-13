@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<title>Home</title>
+<link rel="stylesheet" type="text/css" href="/static/index.css">
+</head>
+<body>
+    <form class="cont1" action="/result" method="POST">
+        <h1>Route Locator</h1>
+        <label for="orig">Start:</label><br>
+        <input type="text" id="orig" name="orig" placeholder="Enter your Starting Point"><br>
+        <label for="dest">Destination:</label><br>
+        <input type="text" id="dest" name="dest" placeholder="Enter your Destination"><br><br>
+        
+        <input type="radio" id="kilometer" name="metric" value="KM">
+        <label for="kilometer">Kilometer</label><br>
+        <input type="radio" id="meter" name="metric" value="M">
+        <label for="meter">Meter</label><br>
+        <input type="radio" id="miles" name="metric" value="MI">
+        <label for="miles">Miles</label><br><br>
+
+        <a href="/result">
+        <button id="result" type="submit" class = "button"><span>Submit</span></button>
+    </form>   
+</body>
+</html>

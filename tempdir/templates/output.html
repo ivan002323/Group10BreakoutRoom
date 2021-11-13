@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Output</title>
+<link rel="stylesheet" type="text/css" href="/static/output.css">
+</head>
+<body>
+    <form class="cont1" action="/result" method="POST"></form>
+        {% if success_call %}
+        <p>{{success_call}}</p>
+        <p>Destination: {{Destination}} </p>
+        <p>Trip Duration: {{Duration}} </p>
+        <p>Fuel Used (Ltr): {{Fuel}} </p>
+            {% if metrics == 'MI' %}
+            <p>Miles: {{Miles}}mi</p>
+            {% elif metrics == 'M' %}
+            <p>Meters: {{Meters}}m</p>
+            {% elif metrics == 'KM' %}
+            <p>Kilometers: {{Kilometers}}km</p>
+            {% endif %}
+        <br>
+        <p>Maneuvers:</p>
+    {% for x in maneu %}
+        <li> {{x}} </li>  
+    {% endfor %}
+    {% endif %}
+        <p>{{j402}}</p>
+        <p>{{j611}}</p>
+        <p>{{unknown}}</p>
+        <p>{{unknown1}}</p>
+    </form>
+    <a href="/home">
+    <button type="button" class = "button"><span>Reset</span></button>
+</body>
+</html>
