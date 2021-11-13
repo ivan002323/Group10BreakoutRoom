@@ -1,0 +1,17 @@
+<html> 
+	<head></head>
+	<body>
+        <form action="/result" method="POST">
+          {% if name %}
+            <h3 style="color: blue;">Hello {{name}}, ma lose-streak ka sana sa axie!!</h3>
+          {% endif %}
+            <label for="name">Pangalan mo:</label>
+            <input type="text" id="name" name="name"><br>
+            <button type="submit">Submit</button>
+        </form>    
+        <br>
+        <br>
+        <br>
+    </body>
+
+</html>

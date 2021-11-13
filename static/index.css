@@ -22,7 +22,7 @@ body{
     .cont1 input[type=text] {
         margin: auto;
         margin-top: 50px;
-        width:110%;
+        width:100%;
         padding: 12px; 20px;
         margin: 8px 0;
         border: 1px solid #ccc;
@@ -109,4 +109,4 @@ body{
       .button:hover span:after {
         opacity: 1;
         right: 1;
-      }        
+      }       
