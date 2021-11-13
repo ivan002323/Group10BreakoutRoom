@@ -10,8 +10,14 @@
         <p>{{success_call}}</p>
         <p>Destination: {{Destination}} </p>
         <p>Trip Duration: {{Duration}} </p>
-        <p>Kilometers: {{Kilometers}} </p>
         <p>Fuel Used (Ltr): {{Fuel}} </p>
+            {% if metrics == 'MI' %}
+            <p>Miles: {{Miles}}mi</p>
+            {% elif metrics == 'M' %}
+            <p>Meters: {{Meters}}m</p>
+            {% elif metrics == 'KM' %}
+            <p>Kilometers: {{Kilometers}}km</p>
+            {% endif %}
         <br>
         <p>Maneuvers:</p>
     {% for x in maneu %}
@@ -26,3 +32,4 @@
     <a href="/home">
     <button type="button" class = "button"><span>Reset</span></button>
 </body>
+</html>

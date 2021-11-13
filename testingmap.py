@@ -16,6 +16,7 @@ def result():
     print(output)
     orig = output["orig"]
     dest = output["dest"]
+    metrics = request.form['metric']
     url = main_api + urllib.parse.urlencode({"key": key, "from":orig, "to":dest})
     print("URL: " + (url))
     json_data = requests.get(url).json()
@@ -25,10 +26,18 @@ def result():
         Destination = str((orig) + " to " + (dest))
         Duration = str(json_data["route"]["formattedTime"])
         Kilometers = str("{:.2f}".format((json_data["route"]["distance"])*1.61))
+        Meters = str("{:.2f}".format(((json_data["route"]["distance"])*1.61)*1000))
+        Miles = str("{:.2f}".format(((json_data["route"]["distance"])*1.61)*.621371))
         Fuel = str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78))
         maneu = []
+
         for each in json_data["route"]["legs"][0]["maneuvers"]:
-            maneu.append((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
+            if(metrics=='KM'):
+                maneu.append((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
+            elif(metrics=='M'):
+                maneu.append((each["narrative"]) + " (" + str("{:.2f}".format(((each["distance"])*1.61)*1000) + " m)"))
+            else:
+                maneu.append((each["narrative"]) + " (" + str("{:.2f}".format(((each["distance"])*1.61)*.621371) + " mi)"))
 
     elif json_status == 402:
         j402 = str("Status Code: " + str(json_status) + "; Invalid user inputs for one or both locations.")
@@ -41,7 +50,7 @@ def result():
         unknown1 = str("https://developer.mapquest.com/documentation/directions-api/status-codes")
         return render_template('output.html', unknown = unknown, unknown1 = unknown1)
 
-    return render_template('output.html', json_status = json_status, Destination = Destination, Duration = Duration, Kilometers = Kilometers, Fuel = Fuel, success_call = success_call, maneu = maneu)
+    return render_template('output.html', json_status = json_status, Destination = Destination, Duration = Duration, Meters = Meters, Miles = Miles, Kilometers = Kilometers, Fuel = Fuel, success_call = success_call, maneu = maneu, metrics = metrics)
 
 if __name__ == "__main__":
     app.run(debug=True)
